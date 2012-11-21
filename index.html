@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="firoku.css" type="text/css"/>
+        <title>Firoku</title>
+    </head>
+    <body>
+        <div id="remote" class="panel">
+            <div class="row first">
+                <div class="button first empty">
+                </div>
+                <div class="button empty">
+                </div>
+                <div id="b_settings" class="button only last">
+                    Settings
+                </div>
+            </div>
+            <div class="row">
+                <div id="b_Back" class="button first">
+                    Back
+                </div>
+                <div id="b_Up" class="button">
+                    ^
+                </div>
+                <div id="b_Home" class="button last">
+                    Home
+                </div>
+            </div>
+            <div class="row">
+                <div id="b_Left" class="button first">
+                    &lt;
+                </div>
+                <div id="b_Select" class="button">
+                    OK
+                </div>
+                <div id="b_Right" class="button last">
+                    &gt;
+                </div>
+            </div>
+            <div class="row">
+                <div id="b_InstantReplay" class="button first">
+                    Replay
+                </div>
+                <div id="b_Down" class="button">
+                    v
+                </div>
+                <div id="b_Info" class="button last">
+                    *
+                </div>
+            </div>
+            <div class="row last">
+                <div id="b_Rev" class="button first">
+                    &lt;&lt;
+                </div>
+                <div id="b_Play" class="button">
+                    &gt;||
+                </div>
+                <div id="b_Fwd" class="button last">
+                    &gt;&gt;
+                </div>
+            </div>
+        </div>
+        <div id="settings" class="panel">
+            <div class="row" id="topbar">
+                <div id="b_remote" class="button first only">
+                    Remote
+                </div>
+            </div>
+            <label for="roku_ip">Roku IP:</label>
+            <input type="text" id="roku_ip">
+        </div>
+        <div id="cors_hack">
+            <iframe id="roku_response" name="roku_response"></iframe>
+            <form id="roku_query" method="post" target="roku_response"></form>
+        </div>
+        <script type="text/javascript" src="jquery-1.8.3.js"></script>
+        <script type="text/javascript" src="firoku.js"></script>
+    </body>
+</html>

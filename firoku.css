@@ -1,0 +1,50 @@
+body {
+    padding: 0px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(7, 54, 66);
+}
+
+.active {
+    background-color: rgb(64, 40, 154);
+}
+
+.panel {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.row {
+    height: 20%;
+    border-bottom: 2px solid rgb(246, 246, 246);
+}
+
+.row.last {
+    border-bottom: none;
+}
+
+.button {
+    width: 33%;
+    border-left: 2px solid rgb(246, 246, 246);
+    text-align: center;
+    display: inline-block;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.button.empty {
+    border-left: 2px solid rgb(7, 54, 66);
+}
+
+.button.first {
+    border-left: none;
+}
+
+.button.first.only {
+    border-right: 2px solid rgb(246, 246, 246);
+}
+
+#settings, #roku_response, #roku_query {
+    display: none;
+}
