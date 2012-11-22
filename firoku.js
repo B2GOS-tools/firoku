@@ -50,6 +50,8 @@
 
             if (!this.ip) {
                 this.show_settings();
+            } else {
+                $("#roku_ip")[0].value = this.ip;
             }
         }
     };
