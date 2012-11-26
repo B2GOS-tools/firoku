@@ -31,12 +31,16 @@
 
         show_settings: function () {
             $("#remote").hide();
+            $("#b_remote").removeClass("active");
             $("#settings").show();
+            $("#b_settings").addClass("active");
         },
 
         show_remote: function () {
             $("#settings").hide();
+            $("#b_settings").removeClass("active");
             $("#remote").show();
+            $("#b_remote").addClass("active");
         },
 
         save_ip: function () {

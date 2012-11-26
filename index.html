@@ -7,130 +7,64 @@
         <title>Firoku</title>
     </head>
     <body>
-        <div id="remote" class="panel keypad">
-            <div class="col">
-                <div class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            <a href="http://www.roku.com/">Roku</a>
-                        </div>
-                    </div>
-                </div>
-                <div id="b_Back" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            Back
-                        </div>
-                    </div>
-                </div>
-                <div id="b_Left" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            &lt;
-                        </div>
-                    </div>
-                </div>
-                <div id="b_InstantReplay" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            Replay
-                        </div>
-                    </div>
-                </div>
-                <div id="b_Rev" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            &lt;&lt;
-                        </div>
-                    </div>
-                </div>
+        <div id="menu">
+            <div id="b_remote" class="menu-item active">
+                Remote
             </div>
-            <div class="col">
-                <div class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            &nbsp;
-                        </div>
-                    </div>
+            <div id="b_settings" class="menu-item">
+                Settings
+            </div>
+        </div>
+        <div id="remote" class="panel keypad">
+            <div class="row">
+                <div id="b_Back" class="button">
+                    Back
                 </div>
                 <div id="b_Up" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            ^
-                        </div>
-                    </div>
-                </div>
-                <div id="b_Select" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            OK
-                        </div>
-                    </div>
-                </div>
-                <div id="b_Down" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            v
-                        </div>
-                    </div>
-                </div>
-                <div id="b_Play" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            &gt;||
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div id="b_settings" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            Settings
-                        </div>
-                    </div>
+                    ^
                 </div>
                 <div id="b_Home" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            Home
-                        </div>
-                    </div>
+                    Home
+                </div>
+            </div>
+            <div class="row">
+                <div id="b_Left" class="button">
+                    &lt;
+                </div>
+                <div id="b_Select" class="button">
+                    OK
                 </div>
                 <div id="b_Right" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            &gt;
-                        </div>
-                    </div>
+                    &gt;
+                </div>
+            </div>
+            <div class="row">
+                <div id="b_InstantReplay" class="button">
+                    Replay
+                </div>
+                <div id="b_Down" class="button">
+                    v
                 </div>
                 <div id="b_Info" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            *
-                        </div>
-                    </div>
+                    *
                 </div>
-                <div id="b_Fwd" class="button">
-                    <div class="button-icon-container">
-                        <div class="button-icon">
-                            &gt;&gt;
-                        </div>
-                    </div>
+            </div>
+            <div class="row">
+                <div id="b_Rev" class="button bottom">
+                    &lt;&lt;
+                </div>
+                <div id="b_Play" class="button bottom">
+                    &gt;||
+                </div>
+                <div id="b_Fwd" class="button bottom">
+                    &gt;&gt;
                 </div>
             </div>
         </div>
         <div id="settings" class="panel">
-            <div class="settings_row">
-                <div id="b_remote" class="settings_item">
-                    Remote
-                </div>
-            </div>
-            <div class="settings_row">
-                <div class="settings_item">
-                    <label for="roku_ip">Roku IP:</label>
-                    <input type="text" id="roku_ip">
-                </div>
+            <div class="settings-item">
+                <label for="roku_ip">Roku IP:</label>
+                <input type="text" id="roku_ip">
             </div>
         </div>
         <div id="cors_hack">
