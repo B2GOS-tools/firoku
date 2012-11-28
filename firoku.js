@@ -72,37 +72,59 @@
         "Info",
         "Rev",
         "Play",
-        "Fwd",
+        "Fwd"
+    ];
+
+    var downevents = [
+        "mousedown",
+        "touchstart"
+    ];
+
+    var upevents = [
+        "mouseup",
+        "touchend",
+        "touchcancel",
+        "touchleave"
     ];
 
     for (var b of roku_buttons) {
         (function(btn) {
-            $("#b_" + btn).on('mousedown', function () {
-                f.do_touch_start(btn);
-                f.do_roku_down(btn);
-            });
-            $("#b_" + btn).on('mouseup', function () {
-                f.do_touch_stop(btn);
-                f.do_roku_up(btn);
-            });
+            for (var d of downevents) {
+                $("#b_" + btn).on(d, function () {
+                    f.do_touch_start(btn);
+                    f.do_roku_down(btn);
+                });
+            }
+            for (var u of upevents) {
+                $("#b_" + btn).on(u, function () {
+                    f.do_touch_stop(btn);
+                    f.do_roku_up(btn);
+                });
+            }
         })(b);
     }
 
-    $("#b_settings").on('mousedown', function () {
-        f.do_touch_start("settings");
-    });
-    $("#b_settings").on('mouseup', function () {
-        f.do_touch_stop("settings");
-        f.show_settings();
-    });
+    for (var d of downevents) {
+        $("#b_settings").on(d, function () {
+            f.do_touch_start("settings");
+        });
 
-    $("#b_remote").on('mousedown', function () {
-        f.do_touch_start("remote");
-    });
-    $("#b_remote").on('mouseup', function () {
-        f.do_touch_stop("remote");
-        f.show_remote();
-    });
+        $("#b_remote").on(d, function () {
+            f.do_touch_start("remote");
+        });
+    }
+
+    for (var u of upevents) {
+        $("#b_settings").on(u, function () {
+            f.do_touch_stop("settings");
+            f.show_settings();
+        });
+
+        $("#b_remote").on(u, function () {
+            f.do_touch_stop("remote");
+            f.show_remote();
+        });
+    }
 
     $("#roku_ip").on('blur', f.save_ip);
 

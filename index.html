@@ -7,7 +7,7 @@
         <title>Firoku</title>
     </head>
     <body>
-        <div id="menu">
+        <div id="menu" class="menu">
             <div id="b_remote" class="menu-item active">
                 Remote
             </div>
@@ -15,7 +15,7 @@
                 Settings
             </div>
         </div>
-        <div id="remote" class="panel keypad">
+        <div id="remote" class="panel remote">
             <div class="row">
                 <div id="b_Back" class="button">
                     &#x2190;
@@ -61,13 +61,13 @@
                 </div>
             </div>
         </div>
-        <div id="settings" class="panel">
+        <div id="settings" class="panel settings">
             <div class="settings-item">
                 <label for="roku_ip">Roku IP:</label>
                 <input type="text" id="roku_ip">
             </div>
         </div>
-        <div id="cors_hack">
+        <div id="cors_hack" class="cors_hack">
             <iframe id="roku_response" name="roku_response"></iframe>
             <form id="roku_query" method="post" target="roku_response"></form>
         </div>
