@@ -22,10 +22,25 @@
         },
 
         do_roku_down: function (button) {
+            if (!this.ip) {
+                // Oops! We can't send a button push if we don't know about a
+                // Roku! Let the user know.
+                var n = noty({layout: "center",
+                              type: "error",
+                              text: "You need to set your Roku's IP",
+                              timeout: 2500});
+                return;
+            }
             this.do_roku_post("keydown", button);
         },
 
         do_roku_up: function (button) {
+            if (!this.ip) {
+                // We've already showed an error on button down, so no need to
+                // show another of the same one, but we don't want to try to do
+                // the post.
+                return;
+            }
             this.do_roku_post("keyup", button);
         },
 
