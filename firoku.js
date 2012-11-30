@@ -126,7 +126,7 @@
         });
     }
 
-    $("#roku_ip").on('blur', f.save_ip);
+    $("#roku_ip").on('blur', function () { f.save_ip(); });
 
     f.setup();
 })(jQuery);
