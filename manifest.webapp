@@ -11,7 +11,6 @@
         "url": "http://todesschaf.org"
     },
     "installs_allowed_from": ["*"],
-    "type": "privileged",
     "orientation": "portrait",
     "fullscreen": "true"
 }
