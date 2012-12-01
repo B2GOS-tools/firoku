@@ -11,7 +11,12 @@
         "url": "http://todesschaf.org"
     },
     "installs_allowed_from": ["*"],
-    "type": "privileged",
     "orientation": "portrait",
-    "fullscreen": "true"
+    "fullscreen": "true",
+    "type": "privileged",
+    "permissions": {
+        "systemXHR": {
+            "description": "Required to communicate with the Roku device"
+        }
+    }
 }

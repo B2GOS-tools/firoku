@@ -64,6 +64,9 @@
         },
 
         setup: function () {
+            // This lets us perform XHR to the Roku, which sucks at CORS.
+            $.ajaxSetup({xhrFields: {mozSystem: true}});
+
             this.ip = localStorage.getItem('roku_ip');
             this.form = $("#roku_query")[0];
 
