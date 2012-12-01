@@ -1,3 +1,18 @@
+/*
+ * IMPORTANT URLS
+ * /query/apps
+ *    Returns an XML list of apps.
+ *    <apps>
+ *      <app id="some_id_number" version="some.version.number">App Name</app>
+ *      ...
+ *    </apps>
+ *
+ * /query/icon/<appid>
+ *    Returns the image that is the icon for the app in question.
+ *
+ * /launch/<appid>
+ *    Start the app in question
+ */
 (function ($) {
     var f = {
         ip: null,
