@@ -23,7 +23,7 @@ html, body {
 }
 
 .menu .button {
-    width: 50%;
+    width: 33%;
 }
 
 .button:last-child {
@@ -79,8 +79,4 @@ input[type="text"] {
     background-color: rgb(7, 54, 66);
     color: rgb(255, 255, 255);
     border: 1px solid rgb(246, 246, 246);
-}
-
-.cors_hack {
-    display: none;
 }

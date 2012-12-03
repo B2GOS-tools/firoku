@@ -8,14 +8,17 @@
     </head>
     <body>
         <div id="menu" class="menu">
-            <div id="b_remote" class="button active">
+            <div id="b_remote" class="button menu-item active">
                 Remote
             </div>
-            <div id="b_settings" class="button">
+            <div id="b_channels" class="button menu-item">
+                Channels
+            </div>
+            <div id="b_settings" class="button menu-item">
                 Settings
             </div>
         </div>
-        <div id="remote" class="panel remote">
+        <div id="p_remote" class="panel remote">
             <div class="row">
                 <div id="b_Back" class="button">
                     &#x2190;
@@ -61,15 +64,14 @@
                 </div>
             </div>
         </div>
-        <div id="settings" class="panel settings">
+        <div id="p_channels" class="panel channels">
+            <!-- Content for this panel is generated dynamically. -->
+        </div>
+        <div id="p_settings" class="panel settings">
             <div class="settings-item">
                 <label for="roku_ip">Roku IP:</label>
                 <input type="text" id="roku_ip">
             </div>
-        </div>
-        <div id="cors_hack" class="cors_hack">
-            <iframe id="roku_response" name="roku_response"></iframe>
-            <form id="roku_query" method="post" target="roku_response"></form>
         </div>
         <script type="text/javascript" src="jquery-1.8.3.js"></script>
         <script type="text/javascript" src="jquery.noty.js"></script>

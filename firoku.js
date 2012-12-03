@@ -16,16 +16,22 @@
 (function ($) {
     var f = {
         ip: null,
+        urlbase: null,
         form: null,
+        channels: {},
 
-        do_roku_post: function (act, param) {
-            // This is kind of an ugly hack, because the Roku takes its
-            // commands via HTTP, but doesn't have any sort of CORS header,
-            // so we have to hack around it by sending commands via a post
-            // in an iframe, and hoping to god they work. Joy.
-            var url = "http://" + this.ip + ":8060/" + act + "/" + param;
-            this.form.action = url;
-            this.form.submit();
+        do_error: function (msg) {
+            noty({layout: "center",
+                  type: "error",
+                  text: msg,
+                  timeout: 2500});
+        },
+
+        do_roku_button: function (act, button) {
+            var url = this.urlbase + act + "/" + button;
+            $.ajax(url).fail(function (jqxhr, status, error) {
+                f.do_error("Error communicating with Roku (" + status + ")");
+            });
         },
 
         do_touch_start: function (button) {
@@ -40,13 +46,10 @@
             if (!this.ip) {
                 // Oops! We can't send a button push if we don't know about a
                 // Roku! Let the user know.
-                var n = noty({layout: "center",
-                              type: "error",
-                              text: "You need to set your Roku's IP",
-                              timeout: 2500});
+                this.do_error("You need to set your Roku's IP");
                 return;
             }
-            this.do_roku_post("keydown", button);
+            this.do_roku_button("keydown", button);
         },
 
         do_roku_up: function (button) {
@@ -56,25 +59,44 @@
                 // the post.
                 return;
             }
-            this.do_roku_post("keyup", button);
+            this.do_roku_button("keyup", button);
         },
 
-        show_settings: function () {
-            $("#remote").hide();
-            $("#b_remote").removeClass("active");
-            $("#settings").show();
-            $("#b_settings").addClass("active");
+        show_panel: function(panel) {
+            $("#panel").hide();
+            $("#menu-item").removeClass("active");
+            $(".p_" + panel).show();
+            $(".b_" + panel).addClass("active");
         },
 
-        show_remote: function () {
-            $("#settings").hide();
-            $("#b_settings").removeClass("active");
-            $("#remote").show();
-            $("#b_remote").addClass("active");
+        load_channels: function() {
+            var a = $.ajax(this.urlbase + "query/apps");
+            a.done(display_channels);
+            a.fail(function (jqxhr, status, error) {
+                f.do_error("Error retrieving channel list (" + status + ")");
+            });
+        },
+
+        display_channels: function(data, status, jqxhr) {
+            var panel = $("#p_channels");
+            var xml = jqxhr.responseXML;
+            // TODO
+        },
+
+        launch_channel: function(chanid) {
+            var url = this.urlbase + "launch/" + chanid;
+            $.ajax(url).fail(function (jqxhr, status, error) {
+                f.do_error("Error launching channel (" + status + ")");
+            });
+        },
+
+        update_urlbase: function() {
+            this.urlbase = "http://" + this.ip + ":8060/";
         },
 
         save_ip: function () {
             this.ip = $("#roku_ip")[0].value;
+            this.update_urlbase();
             localStorage.setItem('roku_ip', this.ip);
         },
 
@@ -88,6 +110,7 @@
             if (!this.ip) {
                 this.show_settings();
             } else {
+                this.update_urlbase();
                 $("#roku_ip")[0].value = this.ip;
             }
         }
@@ -145,17 +168,27 @@
         $("#b_remote").on(d, function () {
             f.do_touch_start("remote");
         });
+
+        #("#b_channels").on(d, function() {
+            f.do_touch_start("channels");
+        });
     }
 
     for (var u of upevents) {
         $("#b_settings").on(u, function () {
             f.do_touch_stop("settings");
-            f.show_settings();
+            f.show_panel("settings");
         });
 
         $("#b_remote").on(u, function () {
             f.do_touch_stop("remote");
-            f.show_remote();
+            f.show_panel("remote");
+        });
+
+        $("#b_channels").on(u, function () {
+            f.do_touch_stop("channels");
+            f.show_panel("channels");
+            f.load_channels();
         });
     }
 
