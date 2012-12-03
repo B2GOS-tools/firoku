@@ -82,7 +82,7 @@
         },
 
         load_channels: function() {
-            var a = $.ajax(this.urlbase + "query/apps");
+            var a = $.ajax(this.urlbase + "query/apps", {type: "GET"});
             a.done(display_channels);
             a.fail(function (jqxhr, status, error) {
                 f.do_error("Error retrieving channel list (" + status + ")");
@@ -152,7 +152,7 @@
 
         setup: function () {
             // This lets us perform XHR to the Roku, which sucks at CORS.
-            $.ajaxSetup({xhrFields: {mozSystem: true}});
+            $.ajaxSetup({xhrFields: {mozSystem: true}, type: "POST"});
 
             this.ip = localStorage.getItem('roku_ip');
             this.form = $("#roku_query")[0];
