@@ -60,19 +60,28 @@ html, body {
     border-bottom: none;
 }
 
-.settings {
+.settings, .channels {
     overflow: scroll;
     width: 100%;
     display: none;
 }
 
-.settings-item {
+.settings-item, .channel {
     text-align: center;
     height: 3em;
     line-height: 1em;
     padding-top: 1em;
     padding-bottom: 1em;
     width: 100%;
+}
+
+.channel {
+    text-align: left;
+    border-bottom: 1px solid rgb(246, 246, 246);
+}
+
+.channel img {
+    height: 2.75em;
 }
 
 input[type="text"] {

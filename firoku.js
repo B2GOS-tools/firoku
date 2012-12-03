@@ -20,6 +20,18 @@
         form: null,
         channels: {},
 
+        downevents: [
+            "mousedown",
+            "touchstart"
+        ],
+
+        upevents: [
+            "mouseup",
+            "touchend",
+            "touchcancel",
+            "touchleave"
+        ],
+
         do_error: function (msg) {
             noty({layout: "center",
                   type: "error",
@@ -80,7 +92,45 @@
         display_channels: function(data, status, jqxhr) {
             var panel = $("#p_channels");
             var xml = jqxhr.responseXML;
-            // TODO
+            var apps = xml.evaluate("//app", xml, null, XPathResult.ANY_TYPE,
+                null);
+            var app = apps.iterateNext();
+
+            while (app) {
+                var app_id = app.id;
+                if (!this.apps.hasOwnProperty(app_id)) {}
+                    var app_name = app.firstChild.data;
+                    this.apps[app_id] = app_name;
+
+                    var img_src = this.urlbase + "query/icon/" + app_id;
+                    var img = $("<img>", {src: img_src});
+
+                    var div_id = "app_" + app_id;
+                    var div = $("<div />", {id: div_id, class: "channel"});
+                    div.append(img);
+                    div.append(app_name);
+
+                    for (var d of this.downevents) {
+                        (function (did) {
+                            div.on(d, function () {
+                                $("#" + did).addClass("active");
+                            });
+                        })(div_id);
+                    }
+
+                    for (var u of this.upevents) {
+                        (function (did, aid) {
+                            div.on(u, function () {
+                                $("#" + did).removeClass("active");
+                                f.launch_channel(aid);
+                            })
+                        })(div_id, app_id);
+                    }
+
+                    panel.append(d);
+                }
+                app = apps.iterateNext();
+            }
         },
 
         launch_channel: function(chanid) {
@@ -131,27 +181,15 @@
         "Fwd"
     ];
 
-    var downevents = [
-        "mousedown",
-        "touchstart"
-    ];
-
-    var upevents = [
-        "mouseup",
-        "touchend",
-        "touchcancel",
-        "touchleave"
-    ];
-
     for (var b of roku_buttons) {
         (function(btn) {
-            for (var d of downevents) {
+            for (var d of f.downevents) {
                 $("#b_" + btn).on(d, function () {
                     f.do_touch_start(btn);
                     f.do_roku_down(btn);
                 });
             }
-            for (var u of upevents) {
+            for (var u of f.upevents) {
                 $("#b_" + btn).on(u, function () {
                     f.do_touch_stop(btn);
                     f.do_roku_up(btn);
@@ -160,7 +198,7 @@
         })(b);
     }
 
-    for (var d of downevents) {
+    for (var d of f.downevents) {
         $("#b_settings").on(d, function () {
             f.do_touch_start("settings");
         });
@@ -174,7 +212,7 @@
         });
     }
 
-    for (var u of upevents) {
+    for (var u of f.upevents) {
         $("#b_settings").on(u, function () {
             f.do_touch_stop("settings");
             f.show_panel("settings");
