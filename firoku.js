@@ -152,6 +152,8 @@ Firoku = {
 
     setup: function () {
         // This lets us perform XHR to the Roku, which sucks at CORS.
+        // TODO - right now this doesn't work on the device, for whatever
+        // reason. For now, we use a proxy running on the local network.
         //$.ajaxSetup({xhrFields: {mozSystem: true}, type: "POST"});
         $.ajaxSetup({type: "POST"});
 
